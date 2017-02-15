@@ -1,3 +1,6 @@
+"pathogen
+execute pathogen#infect()
+
 "vundle
 set nocompatible
 filetype off
@@ -14,7 +17,7 @@ Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'kien/ctrlp.vim' 
 
 "html
-"  isnowfy only compatible with python not python3
+"isnowfy only compatible with python not python3
 Plugin 'isnowfy/python-vim-instant-markdown'
 Plugin 'jtratner/vim-flavored-markdown'
 Plugin 'suan/vim-instant-markdown'
@@ -69,10 +72,10 @@ import os.path
 import sys
 import vim
 if 'VIRTUA_ENV' in os.environ:
-  project_base_dir = os.environ['VIRTUAL_ENV']
-  sys.path.insert(0, project_base_dir)
-  activate_this = os.path.join(project_base_dir,'bin/activate_this.py')
-  execfile(activate_this, dict(__file__=activate_this))
+    project_base_dir = os.environ['VIRTUAL_ENV']
+    sys.path.insert(0, project_base_dir)
+    activate_this = os.path.join(project_base_dir,'bin/activate_this.py')
+    execfile(activate_this, dict(__file__=activate_this))
 EOF
 
 "it would be nice to set tag files by the active virtualenv here
