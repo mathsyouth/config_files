@@ -54,6 +54,7 @@ let mapleader=" "
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 "
 syntax enable
+let g:solarized_termcolors=256
 set background=dark
 colorscheme solarized
 "set guifont=Monaco:h14
