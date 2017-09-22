@@ -1,5 +1,11 @@
-"pathogen
-execute pathogen#infect()
+" Pathogen load
+filetype off
+
+call pathogen#infect()
+call pathogen#helptags()
+
+filetype plugin indent on
+syntax on
 
 "vundle
 set nocompatible
@@ -23,10 +29,6 @@ Plugin 'jtratner/vim-flavored-markdown'
 Plugin 'suan/vim-instant-markdown'
 Plugin 'nelstrom/vim-markdown-preview'
 "python sytax checker
-Plugin 'nvie/vim-flake8'
-Plugin 'Vimjas/vim-python-pep8-indent'
-Plugin 'vim-scripts/Pydiction'
-Plugin 'vim-scripts/indentpython.vim'
 Plugin 'scrooloose/syntastic'
 
 "auto-completion stuff
