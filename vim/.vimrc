@@ -1,3 +1,49 @@
+"不与 Vi 兼容
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" Vim Markdown
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+
+" Full path fuzzy file, buffer, mru, tag, ... finder for Vim
+Plugin 'ctrlpvim/ctrlp.vim'
+
+" The NERDTree is a file system explorer for the Vim editor
+Plugin 'scrooloose/nerdtree'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+" Open a NERDTree automatically when vim starts up
+autocmd vimenter * NERDTree
+
+"vim使用自动对齐，也就是把当前行的对齐格式应用到下一行(自动缩进）
+set autoindent
+"针对 C语言语法自动缩进
+set cindent
+
 "修改缩进宽度为4个空格
 set shiftwidth=4
 
@@ -15,9 +61,6 @@ set hlsearch
 "自动语法高亮
 syntax on
 
-"不与 Vi 兼容
-set nocompatible
-
 "在底部显示，当前处于命令模式还是插入模式
 set showmode
 
@@ -32,6 +75,14 @@ set t_Co=256
 
 "光标所在的当前行高亮
 set cursorline
+"highlght 主要用来配色，包括语法高亮等个性化配置，可以通过:h highlight 查看详细信息
+"CursorLine 表示当前所在的行
+"cterm 表示为原生vim设置样式，设置为NONE表示可以自定义设置
+"ctermbg 设置终端vim的背景色
+"ctermfg 设置终端vim的前景色
+"guibg 设置gvim的背景色
+"guifg 设置gvim的前景色
+highlight CursorLine cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 
 "设置行宽，即一行显示多少个字符
 set textwidth=80
