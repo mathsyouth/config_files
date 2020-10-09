@@ -51,6 +51,16 @@ Plugin 'chriskempson/base16-vim'
 " fugitive.vim: A Git wrapper so awesome, it should be illegal
 Plugin 'tpope/vim-fugitive'
 
+" Displays available keybindings in popup 
+Plugin 'liuchengxu/vim-which-key'
+
+" The plugin provides mappings to easily delete, change and add such
+" surroundings in pairs.
+Plugin 'tpope/vim-surround'
+
+" JavaScript bundle for vim
+Plugin 'pangloss/vim-javascript'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -113,10 +123,24 @@ endif
 
 " => Editing -------------------------------------------------------------- {{{1
 
-" 针对 C语言语法自动缩进
-set cindent
+" Indentation without hard tabs
+set expandtab
 " Number of spaces to use for autoindent
 set shiftwidth=4
+set softtabstop=4
+
+" File type based indentation
+filetype plugin indent on 
+autocmd FileType html setlocal shiftwidth=2 tabstop=2
+autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4
+autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
+
+" CSS (tab width 2 chr, wrap at 79th char)
+autocmd FileType css set sw=2
+autocmd FileType css set ts=2
+autocmd FileType css set sts=2
+autocmd FileType css set textwidth=79
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 
 " Map the leader key to a spacebar
 let mapleader = "\<space>"
@@ -127,6 +151,23 @@ set wildmode=list:longest,full
 " Immediately add a closing quotes or braces in insert mode
 " inoremap ( ()<esc>i
 " inoremap { {}<esc>i
+
+" 多窗口编辑时, 临时放大某个窗口, 编辑完再切回原来的布局
+" http://stackoverflow.com/questions/13194428/is-better-way-to-zoom-windows-in-vim-than-zoomwin
+" Zoom / Restore window.
+function! s:ZoomToggle() abort
+    if exists('t:zoomed') && t:zoomed
+        execute t:zoom_winrestcmd
+        let t:zoomed = 0
+    else
+        let t:zoom_winrestcmd = winrestcmd()
+        resize
+        vertical resize
+        let t:zoomed = 1
+    endif
+endfunction
+command! ZoomToggle call s:ZoomToggle()
+nnoremap <silent> <Leader>z :ZoomToggle<CR>
 
 " => Looks ---------------------------------------------------------------- {{{1
 
