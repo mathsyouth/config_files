@@ -46,7 +46,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 
 " colorscheme
-Plugin 'chriskempson/base16-vim'
+Plugin 'tomasiser/vim-code-dark'
 
 " fugitive.vim: A Git wrapper so awesome, it should be illegal
 Plugin 'tpope/vim-fugitive'
@@ -60,6 +60,9 @@ Plugin 'tpope/vim-surround'
 
 " JavaScript bundle for vim
 Plugin 'pangloss/vim-javascript'
+
+" enable repeating supported plugin maps with .
+Plugin 'tpope/vim-repeat'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -84,9 +87,6 @@ set rtp+=/usr/local/opt/fzf
 
 " use Ag with ack.vim
 let g:ackprg = 'ag --vimgrep'
-
-" Provides a theme to be used in conjunction with vim-airline 
-let g:airline_theme='onedark'
 
 " => Sane defaults (from Neovim) ------------------------------------------ {{{1
 
@@ -156,15 +156,15 @@ set wildmode=list:longest,full
 " http://stackoverflow.com/questions/13194428/is-better-way-to-zoom-windows-in-vim-than-zoomwin
 " Zoom / Restore window.
 function! s:ZoomToggle() abort
-    if exists('t:zoomed') && t:zoomed
-        execute t:zoom_winrestcmd
-        let t:zoomed = 0
-    else
-        let t:zoom_winrestcmd = winrestcmd()
-        resize
-        vertical resize
-        let t:zoomed = 1
-    endif
+  if exists('t:zoomed') && t:zoomed
+     execute t:zoom_winrestcmd
+     let t:zoomed = 0
+  else
+    let t:zoom_winrestcmd = winrestcmd()
+    resize
+    vertical resize
+    let t:zoomed = 1
+  endif
 endfunction
 command! ZoomToggle call s:ZoomToggle()
 nnoremap <silent> <Leader>z :ZoomToggle<CR>
@@ -173,17 +173,20 @@ nnoremap <silent> <Leader>z :ZoomToggle<CR>
 
 set t_Co=256
 
-set background=dark
-colorscheme base16-default-dark
+" vim-code-dark colorscheme
+colorscheme codedark
+
+" Provides a theme to be used in conjunction with vim-airline 
+let g:airline_theme='codedark'
 
 " Highlight cursor line
 set cursorline
 " Default Colors for CursorLine
-highlight CursorLine ctermbg=172 ctermfg=None
+" highlight CursorLine ctermbg=172 ctermfg=None
 " Change Color when entering Insert Mode
-autocmd InsertEnter * highlight  CursorLine ctermbg=152 ctermfg=Red
+" autocmd InsertEnter * highlight  CursorLine ctermbg=152 ctermfg=Red
 " Revert Color to default when leaving Insert Mode
-autocmd InsertLeave * highlight  CursorLine ctermbg=172 ctermfg=None
+" autocmd InsertLeave * highlight  CursorLine ctermbg=172 ctermfg=None
 
 " Display line numbers if terminal is wide enough
 if &co > 80
@@ -202,7 +205,7 @@ set showbreak=>>
 
 " highlight multiple columns
 set colorcolumn=80,100
-highlight ColorColumn ctermbg=007
+" highlight ColorColumn ctermbg=007
 
 " 光标遇到圆括号、方括号、大括号时，自动高亮对应的另一个圆括号、方括号和大括号
 set showmatch
